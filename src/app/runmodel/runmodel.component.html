@@ -1,0 +1,70 @@
+<navigation></navigation>
+
+
+<div class="container" style="padding-top:4%; width: auto;">
+    <div class="card-header">
+        <h4 align="center">Create Docker Image</h4>
+    </div>
+  
+  <form class="form-horizontal">
+    <div class="form-group">
+      <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile" multiple (change)="onChange($event, showFileNames)" />          
+          <label class="custom-file-label" for="customFile">Choose a model</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" >Create Docker</button>
+  </form>
+</div>
+
+<div class="container" style="padding-top:1%; width: auto;">
+    <div class="card-header">
+        <h4 align="center">Deploy Model</h4>
+    </div>
+  
+  <form class="form-horizontal">
+    <div class="form-group">
+      <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile">
+          <label class="custom-file-label" for="customFile">Choose a model</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" >Deploy</button>
+  </form>
+</div>
+
+<div class="container" style="padding-top:1%; width: auto;">
+    <div class="card-header">
+        <h4 align="center">Run Model</h4>
+      </div>
+  
+  <form class="form-horizontal">
+    <div class="form-group">
+      <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile">
+          <label class="custom-file-label" for="customFile">Choose a model</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label " for="url">Route / URL:</label>
+      <div >          
+        <input type="text" class="form-control" id="url" placeholder="Enter URL" name="url">
+      </div>
+    </div>
+
+    <div class ="row">
+      <div class="col-6 form-group">
+          <label for="exampleFormControlTextarea">Request</label>
+          <textarea #reqTextArea class="form-control"  rows="6" [(ngModel)]="reqValue" name="reqValue"> </textarea>
+      </div>  
+      <div class="col-6 form-group">
+            <label for="exampleFormControlTextarea1">Response | Logs </label>
+            <textarea #resTextArea class="form-control" ref-textarea [(ngModel)]="resValue" name="resValue" rows="6"></textarea><br/>
+      </div>
+    </div>
+
+   <button type="submit" class="btn btn-primary" (click)="predictIris(reqTextArea.value)">Run</button>
+   <button type="submit" class="btn btn-primary" (click)="clear()">Clear</button>
+  </form>
+</div>
+

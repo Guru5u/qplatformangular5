@@ -1,0 +1,26 @@
+
+<!-- <ag-grid-angular #agGrid
+    style="width:91%; height:252px"
+    class="ag-theme-fresh"
+    [enableSorting]="true"
+    enableFilter= "true"
+    rowSelection="multiple"
+    [gridOptions]="gridOptions"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    (selectionChanged)="onSelectionChanged($event)"
+    (gridReady)="onGridReady($event)"
+    >
+</ag-grid-angular> -->
+
+
+<ag-grid-angular style="width: 91%; height: 355px;"
+                 class="ag-theme-fresh"
+                 rowSelection="multiple"
+                 (selectionChanged)="onSelectionChanged($event)"
+                 [enableSorting]="true"
+                 enableFilter= "true"
+                 (gridReady)="onGridReady($event)"
+                 [columnDefs]="columnDefs"
+                 [rowData]="rowData">
+</ag-grid-angular>

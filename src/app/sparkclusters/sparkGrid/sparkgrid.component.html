@@ -1,0 +1,23 @@
+
+<div style="height: 100%; padding-top:40px; box-sizing: border-box;">
+<ag-grid-angular #agGrid
+    style="width:100%; height:350px"
+    class="ag-theme-fresh"
+    [enableSorting]="true"
+    rowSelection="multiple"
+    [gridOptions]="gridOptions"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    (selectionChanged)="onSelectionChanged($event)"
+    (gridReady)="onGridReady($event)"
+    >
+</ag-grid-angular>
+</div>
+
+<div style="position: absolute; top: 0px; left: 2%;">
+    <div>
+        <button type="button" class="btn btn-info" (click)="onAddRow()">Add Cluster</button>
+        <button type="button" class="btn" (click)="onRemoveSelected()" [disabled]="!rowsSelected()">Remove Cluster</button>
+    </div>
+</div>

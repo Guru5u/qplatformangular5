@@ -1,0 +1,210 @@
+<navigation>
+</navigation>
+  <div  class="row container-fluid" style="padding-top: 10%; padding-bottom: 1%; padding-left: 3%;">
+        <h2 style="text-align:center;width:100%;">Ingestion Activity</h2>
+      <div class="col-md-12" style="width:650px">
+          <div >
+              <button (click)="showAddDialog = !showAddDialog " class="btn">Add </button>
+              <button (click)="showEditDialog = !showEditDialog" class="btn">Edit </button>
+              <button (click)="showDeleteDialog = !showDeleteDialog ; deleteSparkCluster()" class="btn">Delete </button>
+              <ing-activity-grid></ing-activity-grid>
+          </div >
+      </div>      
+  </div>
+
+  <div style="padding-top: 2%; padding-bottom: 1%; padding-left: 6%;">
+      <form>
+          <div class="row" style="padding-bottom: 2%;">
+              <h2>Test Connection</h2> <br>
+          </div>
+          <div class="row">
+            
+            <div class="form-group col-2">
+                <label for="clusterName">Ingestion Profile : </label>
+            </div>
+
+            <div class="form-group col-2">
+                <span id="clusterName"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-2">
+                <label for="version">Source : </label>
+            </div>
+
+            <div class="form-group col-2">
+                <span id="version"></span>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="form-group col-2">
+                  <label for="master">Target : </label>
+              </div>  
+              <div class="form-group col-2">
+                  <span id="master"></span>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-2">
+                <label for="createdBy">Created By  : </label>
+            </div>
+            <div class="form-group col-2">
+                <span id="createdBy"></span>
+            </div>
+          </div>
+
+          <div align="left">
+           <button (click)="testConnection()" type="submit" class="btn" > Test Connection</button>
+        </div>
+        <div class="row" style="padding-left: 3%;">
+            <div *ngIf="showSpinner" align="center"> <br>
+              <img src="/assets/images/straight-loader.gif" height="50" width="70"/>
+            </div>
+            <div *ngIf="showStatus" align="center"> <br>
+              <p style="color:green">Connection Scuccessfull</p>
+            </div>
+        </div>
+        </form>
+  </div>
+
+
+ <app-dialog [(visible)]="showAddDialog" style="padding-top:30%">
+    <div class="container" >
+        <h1>Add Ingestion</h1> <br>
+        <form>
+          <div class="form-group">
+            <label for="add.clusterName">Profile Name</label>
+            <input type="text" class="form-control" id="add.clusterName" required>
+          </div>
+          <div class="form-group">
+              <label for="add.version">Source</label>
+              <input type="text" class="form-control" id="add.version" required>
+            </div>
+          <div class="form-group">
+            <label for="add.sparkMaster">Target</label>
+            <input type="text" class="form-control" id="add.sparkMaster">
+          </div>
+
+          <div class="form-group">
+              <label for="add.port">Port</label>
+              <input type="text" class="form-control" id="add.port" required>
+            </div>
+            <div class="form-group">
+                <label for="add.userName">User Name</label>
+                <input type="text" class="form-control" id="add.userName" required>
+              </div>
+  
+            <div class="form-group">
+              <label for="add.password">Password</label>
+              <input type="text" class="form-control" id="add.password">
+            </div>
+            <div class="form-group">
+                    <label for="add.password">Description</label>
+                    <select class="form-control" name="ingSourceDD">
+                            <option value="volvo">Hadoop</option>
+                            <option value="saab">Spark</option>
+                            <option value="fiat">S3</option>
+                            <option value="audi">RDBMS</option>
+                          </select>
+                  </div>
+
+            <div class="form-group">
+                <label for="add.shared">Shared</label>
+                <input type="checkbox" id="add.shared">
+            </div>
+
+          <div align="center">
+          <button (click)="testConnection4Add()" type="submit" class="btn" > Test Connection</button>
+          <button type="submit" class="btn">Add</button>
+          <button (click)="showAddDialog = !showAddDialog" class="btn">Close</button>
+
+        </div>
+        <div>
+            <div *ngIf="showSpinner4Add" align="center"> <br>
+              <img src="/assets/images/straight-loader.gif" height="50" width="70"/>
+            </div>
+            <div *ngIf="showStatus4Add" align="center"> <br>
+              <p style="color:green">Connection Scuccessfull</p>
+            </div>
+        </div>
+        </form>
+    </div>
+  </app-dialog>
+
+
+  <app-dialog [(visible)]="showEditDialog" style="padding-top:30%">
+    <div class="container" >
+        <h1>Edit File Server</h1> <br>
+        <form>
+            <div class="form-group">
+                <label for="edit.clusterName">File Server Name</label>
+                <input type="text" class="form-control" id="edit.clusterName" required>
+              </div>
+              <div class="form-group">
+                  <label for="edit.version">Protocol</label>
+                  <input type="text" class="form-control" id="edit.version" required>
+                </div>
+              <div class="form-group">
+                <label for="edit.sparkMaster">Host Name</label>
+                <input type="text" class="form-control" id="edit.sparkMaster">
+              </div>
+    
+              <div class="form-group">
+                  <label for="edit.port">Port</label>
+                  <input type="text" class="form-control" id="edit.port" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit.userName">User Name</label>
+                    <input type="text" class="form-control" id="edit.userName" required>
+                  </div>
+      
+                <div class="form-group">
+                  <label for="edit.password">Password</label>
+                  <input type="text" class="form-control" id="edit.password">
+                </div>
+
+                <div class="form-group">
+                        <label for="edit.password">Description</label>
+                        <input type="text" class="form-control" id="edit.connectionString">
+                </div>
+    
+                <div class="form-group">
+                    <label for="edit.shared">Shared</label>
+                    <input type="checkbox" id="edit.shared">
+                </div>
+          <div align="center">
+          <button (click)="testConnection4Edit()" type="submit" class="btn" > Test Connection</button>
+          <button type="submit" class="btn">Add</button>
+          <button (click)="showEditDialog = !showEditDialog" class="btn">Close</button>
+        </div>
+        <div>
+            <div *ngIf="showSpinner4Edit" align="center"> <br>
+              <img src="/assets/images/straight-loader.gif" height="50" width="70"/>
+            </div>
+            <div *ngIf="showStatus4Edit" align="center"> <br>
+              <p style="color:green">Connection Scuccessfull</p>
+            </div>
+        </div>
+        </form>
+    </div>
+  </app-dialog>
+
+  <app-dialog [(visible)]="showDeleteDialog" style="padding-top:30%">
+      <div class="container" >
+          <h1>Delete File Server</h1> <br>
+          <form>
+
+          <div>
+              <img src="/assets/images/straight-loader.gif" height="50" width="70"/>
+              <div *ngIf="showdeleteStatus" align="center"> <br>
+                <p style="color:green">Cluster Deleted Scuccessfull</p>
+              </div>
+          </div>
+          </form>
+      </div>
+    </app-dialog>
+
+

@@ -1,0 +1,49 @@
+<navigation>
+</navigation>
+ <div  class="content standard-board">
+    <div style="padding-top: 2%; padding-bottom: 1%; padding-left: 72%;"> <button (click)="showDialog = !showDialog" class="btn">Add Clusters</button>
+      <!-- <button type="button" (click)="clickMe()">Add Clusters</button> -->
+      </div>
+      <cluster-grid></cluster-grid>
+ </div>
+
+ <app-dialog [(visible)]="showDialog">
+    <div class="container">
+        <h1>Add Clusters</h1> <br>
+        <form>
+          <div class="form-group">
+            <label for="name">Cluster Name</label>
+            <input type="text" class="form-control" id="name" required>
+          </div>
+          <div class="form-group">
+              <label for="name">Distribution</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+
+          <div class="form-group">
+            <label for="alterEgo">Server Address</label>
+            <input type="text" class="form-control" id="alterEgo">
+          </div>
+          <div align="center">
+              <!-- <ngx-spinner></ngx-spinner> -->
+
+
+          <button (click)="testConnection()" type="submit" class="btn" > Test Connection</button>
+          <button type="submit" class="btn">Add</button>
+          <button (click)="showDialog = !showDialog" class="btn">Close</button>
+
+        </div>
+        <div>
+            <div *ngIf="showSpinner" align="center"> <br>
+              <img src="/assets/images/straight-loader.gif" height="50" width="70"/>
+            </div>
+            <div *ngIf="showStatus" align="center"> <br>
+              <p style="color:green">Connection Scuccessfull</p>
+            </div>
+        </div>
+        </form>
+    </div>
+  </app-dialog>
+
+
+

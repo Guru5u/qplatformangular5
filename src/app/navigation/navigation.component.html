@@ -1,0 +1,25 @@
+
+<div class="navigation animated {{animateClass}} {{impersonatingClass}}">
+  <div class="header-container">
+    <div class="mmb-title">
+        <a href="./" class="fa fa-home" style="font-size:30px;color:white;" ></a>
+        <cuppa-slidemenu [menulist]='menuItemsArray' (open)="onMenuOpen()"
+         (close)="onMenuClose()" (onItemSelect)="onItemSelect($event)" [config]="config" >
+            <a *ngIf="showNavLinks" routerLink="/traindata" routerLinkActive="active"></a>
+            <a *ngIf="showNavLinks" routerLink="/sparkcluster"></a>
+            <a *ngIf="showNavLinks" routerLink="/hadoopcluster"></a>
+            <a *ngIf="showNavLinks" routerLink="/ingestion"></a>
+            <a *ngIf="showNavLinks" routerLink="/jupyter"></a> 
+            <a *ngIf="showNavLinks" routerLink="/runmodel"></a>
+          </cuppa-slidemenu>
+          <h2 style="font-size:20px;color:white; padding-left:10%" >Q Platform</h2>
+    </div>
+  </div>
+
+  <!-- these overlays need to be here AND outside the main nav div -->
+  <div class="navigation-board" *ngIf="showNavLinks">
+    <div class="center-nav">
+    </div>
+    <div class="navigation-board-menu"></div>
+  </div>
+</div>

@@ -1,0 +1,186 @@
+<navigation>
+</navigation>
+  <div  class="row container-fluid" style="padding-top: 10%; padding-bottom: 1%; padding-left: 3%;">
+        <h2 style="text-align:center;width:100%;">S3 Clusters</h2>
+      <div class="col-md-12" style="width:650px">
+          <div >
+              <button (click)="showAddDialog = !showAddDialog " class="btn">Add Bucket</button>
+              <button (click)="showEditDialog = !showEditDialog" class="btn">Edit Bucket</button>
+              <button (click)="showDeleteDialog = !showDeleteDialog ; deleteSparkCluster()" class="btn">Delete Bucket</button>
+              <s3-cluster-grid></s3-cluster-grid>
+          </div >
+      </div>      
+  </div>
+
+  <div style="padding-top: 2%; padding-bottom: 1%; padding-left: 6%;">
+      <form>
+          <div class="row" style="padding-bottom: 2%;">
+              <h2>Test Connection</h2> <br>
+          </div>
+          <div class="row">
+            
+            <div class="form-group col-2">
+                <label for="clusterName">Bucket Name : </label>
+            </div>
+
+            <div class="form-group col-2">
+                <span id="clusterName"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-2">
+                <label for="version">Host Name : </label>
+            </div>
+
+            <div class="form-group col-2">
+                <span id="version"></span>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="form-group col-2">
+                  <label for="master">Folder Name : </label>
+              </div>  
+              <div class="form-group col-2">
+                  <span id="master"></span>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-2">
+                <label for="createdBy">Access Key  : </label>
+            </div>
+            <div class="form-group col-2">
+                <span id="createdBy"></span>
+            </div>
+          </div>
+
+          <div align="left">
+           <button (click)="testConnection()" type="submit" class="btn" > Test Connection</button>
+        </div>
+        <div class="row" style="padding-left: 3%;">
+            <div *ngIf="showSpinner" align="center"> <br>
+              <img src="/assets/images/straight-loader.gif" height="50" width="70"/>
+            </div>
+            <div *ngIf="showStatus" align="center"> <br>
+              <p style="color:green">Connection Scuccessfull</p>
+            </div>
+        </div>
+        </form>
+  </div>
+
+
+ <app-dialog [(visible)]="showAddDialog" style="padding-top:30%">
+    <div class="container" >
+        <h1>Add Amazon S3 Bucket</h1> <br>
+        <form>
+          <div class="form-group">
+            <label for="add.clusterName">Bucket Name</label>
+            <input type="text" class="form-control" id="add.clusterName" required>
+          </div>
+          <div class="form-group">
+              <label for="add.version">Host Name</label>
+              <input type="text" class="form-control" id="add.version" required>
+            </div>
+          <div class="form-group">
+            <label for="add.sparkMaster">Folder Name</label>
+            <input type="text" class="form-control" id="add.sparkMaster">
+          </div>
+
+          <div class="form-group">
+              <label for="add.port">Access Key</label>
+              <input type="text" class="form-control" id="add.port" required>
+            </div>
+            <div class="form-group">
+                <label for="add.userName">Secret Key</label>
+                <input type="text" class="form-control" id="add.userName" required>
+              </div>
+
+            <div class="form-group">
+                <label for="add.shared">Shared</label>
+                <input type="checkbox" id="add.shared">
+            </div>
+
+          <div align="center">
+          <button (click)="testConnection4Add()" type="submit" class="btn" > Test Connection</button>
+          <button type="submit" class="btn">Add</button>
+          <button (click)="showAddDialog = !showAddDialog" class="btn">Close</button>
+
+        </div>
+        <div>
+            <div *ngIf="showSpinner4Add" align="center"> <br>
+              <img src="/assets/images/straight-loader.gif" height="50" width="70"/>
+            </div>
+            <div *ngIf="showStatus4Add" align="center"> <br>
+              <p style="color:green">Connection Scuccessfull</p>
+            </div>
+        </div>
+        </form>
+    </div>
+  </app-dialog>
+
+
+  <app-dialog [(visible)]="showEditDialog" style="padding-top:30%">
+    <div class="container" >
+        <h1>Edit Amazon S3 Bucket</h1> <br>
+        <form>
+            <div class="form-group">
+                <label for="edit.clusterName">Bucket Name</label>
+                <input type="text" class="form-control" id="edit.clusterName" required>
+              </div>
+              <div class="form-group">
+                  <label for="edit.version">Host Name</label>
+                  <input type="text" class="form-control" id="edit.version" required>
+                </div>
+              <div class="form-group">
+                <label for="edit.sparkMaster">Folder Name</label>
+                <input type="text" class="form-control" id="edit.sparkMaster">
+              </div>
+    
+              <div class="form-group">
+                  <label for="edit.port">Access Key</label>
+                  <input type="text" class="form-control" id="edit.port" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit.userName">Secret Key</label>
+                    <input type="text" class="form-control" id="edit.userName" required>
+                  </div>
+    
+                <div class="form-group">
+                    <label for="edit.shared">Shared</label>
+                    <input type="checkbox" id="edit.shared">
+                </div>
+          <div align="center">
+          <button (click)="testConnection4Edit()" type="submit" class="btn" > Test Connection</button>
+          <button type="submit" class="btn">Add</button>
+          <button (click)="showEditDialog = !showEditDialog" class="btn">Close</button>
+        </div>
+        <div>
+            <div *ngIf="showSpinner4Edit" align="center"> <br>
+              <img src="/assets/images/straight-loader.gif" height="50" width="70"/>
+            </div>
+            <div *ngIf="showStatus4Edit" align="center"> <br>
+              <p style="color:green">Connection Scuccessfull</p>
+            </div>
+        </div>
+        </form>
+    </div>
+  </app-dialog>
+
+  <app-dialog [(visible)]="showDeleteDialog" style="padding-top:30%">
+      <div class="container" >
+          <h1>Delete Amazon S3 Bucket</h1> <br>
+          <form>
+
+          <div>
+              <img src="/assets/images/straight-loader.gif" height="50" width="70"/>
+              <div *ngIf="showdeleteStatus" align="center"> <br>
+                <p style="color:green">Bucket Deleted Scuccessfull</p>
+              </div>
+          </div>
+          </form>
+      </div>
+    </app-dialog>
+
+

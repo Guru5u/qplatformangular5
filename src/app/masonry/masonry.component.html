@@ -1,0 +1,72 @@
+
+  <div class="container-fluid">
+
+      <div class="row" style="padding-top:15px;padding-left:0%;">
+          <div class="col-10" style="padding-right:0%;" >
+              <fieldset style="margin: 8px; border: 1px solid silver;  padding: 8px; border-radius: 4px;width: auto;">
+                  <legend style="padding: 2px ;width:65px" ><font color="silver">Manage</font></legend>
+                  
+                  <div class="packery" style="padding-bottom:50px">
+                      <masonry [options]="{ transactionDuration: '2s', itemSelector: '.grid-tile', columnWidth: 3, gutter: 5 }">
+                
+                          <masonry-brick *ngFor="let array of masonryTileArray">
+                              <div>
+                                <cpu1-tile *ngIf="array=='tile0'" class="grid-tile" (click)="rdbms()"></cpu1-tile>
+                                <cpu6-tile *ngIf="array=='tile1'" class="grid-tile" (click)="spark()"></cpu6-tile>
+                                <cpu5-tile *ngIf="array=='tile2'" class="grid-tile" (click)="hadoop()"></cpu5-tile>
+                                <cpu7-tile *ngIf="array=='tile3'" class="grid-tile" (click)="s3()"></cpu7-tile>
+                                <cpu4-tile *ngIf="array=='tile5'" class="grid-tile" (click)="fileserver()"></cpu4-tile>
+                              </div>
+                          </masonry-brick>
+                       </masonry>
+                       </div>
+                  </fieldset>
+          </div> 
+     
+        </div>
+      <div class="row" style="padding-top:5px;padding-left:0%;">
+          <div class="col-5" style="padding-right:0%;" >
+              <fieldset style="margin: 8px; border: 1px solid silver;  padding: 8px; border-radius: 4px;width: auto;">
+                  <legend style="padding: 2px;width:35px"><font color="silver">Job</font></legend>
+                  
+                  <div class="packery" style="padding-bottom:45px">
+                      <masonry [options]="{ transactionDuration: '2s', itemSelector: '.grid-tile', columnWidth: 3, gutter: 5 }">
+                
+                          <masonry-brick *ngFor="let array of masonryTileArray">
+                              <div>                                
+                                <cpu3-tile *ngIf="array=='tile4'" class="grid-tile" (click)="ingestion()"></cpu3-tile>
+                                <cpu4-tile *ngIf="array=='tile5'" class="grid-tile" (click)="fileserver()"></cpu4-tile>
+                              </div>
+                          </masonry-brick>
+                       </masonry>
+                       </div>
+                  </fieldset>
+          </div>  
+          
+          <div class="col-5" style="padding-right:0%;" >
+              <fieldset style="margin: 8px; border: 1px solid silver;  padding: 8px; border-radius: 4px;width: auto;">
+                  <legend style="padding: 2px;width:70px"><font color="silver">Ingestion</font></legend>
+                  
+                  <div class="packery" style="padding-bottom:45px">
+                      <masonry [options]="{ transactionDuration: '2s', itemSelector: '.grid-tile', columnWidth: 3, gutter: 10 }">
+                
+                          <masonry-brick *ngFor="let array of masonryTileArray">
+                              <div>                                
+                                <cpu3-tile *ngIf="array=='tile4'" class="grid-tile" (click)="ingestion()"></cpu3-tile>
+                                <cpu4-tile *ngIf="array=='tile5'" class="grid-tile" (click)="fileserver()"></cpu4-tile>
+                              </div>
+                          </masonry-brick>
+                       </masonry>
+                  </div>
+                  </fieldset>
+          </div> 
+        </div>
+
+
+  </div>
+
+
+
+
+
+
